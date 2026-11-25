@@ -1,0 +1,14 @@
+---
+const target = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/es/`;
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Cisco Lab</title>
+  </head>
+  <body>
+    <a href={target}>Español</a> · <a href={target.replace("/es/", "/de/")}>Deutsch</a>
+  </body>
+</html>

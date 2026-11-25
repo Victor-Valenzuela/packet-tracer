@@ -1,0 +1,32 @@
+{
+  "name": "guia-interactiva",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.0",
+    "@tailwindcss/vite": "4.2.2",
+    "@xyflow/react": "^12.8.0",
+    "astro": "^6.1.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "4.2.2"
+  },
+  "overrides": {
+    "vite": "7.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^7.0.2"
+  }
+}

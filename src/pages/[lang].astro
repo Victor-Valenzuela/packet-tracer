@@ -1,0 +1,92 @@
+---
+import "../styles/global.css";
+import LanguagePicker from "../components/LanguagePicker.astro";
+import Editor from "../components/Editor";
+import { dictionaries, type Lang } from "../i18n";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "de" } }];
+}
+const lang = Astro.params.lang as Lang;
+const t = dictionaries[lang];
+---
+
+<html lang={t.htmlLang} class="scroll-smooth overflow-x-hidden">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`} />
+    <title>{t.app.title} | Cisco Lab</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="text-slate-300 font-sans bg-[#020617] selection:bg-blue-500/30 overflow-x-hidden">
+    <div class="lg:hidden print:hidden fixed top-0 left-0 right-0 z-[100] bg-[#020617] border-b border-white/10 p-4 flex justify-between items-center">
+      <div class="text-blue-500 font-black text-xl italic uppercase">
+        CISCO<span class="text-white not-italic">_LAB</span>
+      </div>
+      <button id="mobile-menu-btn" class="p-2 text-slate-400 hover:text-white" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] hidden lg:hidden"></div>
+
+    <div class="flex">
+      <aside
+        id="main-aside"
+        class="hidden lg:block print:hidden overflow-y-auto h-screen w-80 p-8 bg-[#0a0f1e] border-r border-white/5 fixed z-[120] lg:z-auto"
+      >
+        <div class="mb-10 text-blue-500 font-black text-2xl tracking-tighter italic uppercase hidden lg:block">
+          CISCO<span class="text-white not-italic">_LAB</span>
+        </div>
+
+        <LanguagePicker lang={lang} />
+
+        <nav class="space-y-4 text-xs font-bold tracking-widest text-white/90 uppercase">
+          <a href="#topology" class="nav-link block hover:text-blue-400 transition">01. {t.nav.topology}</a>
+          <a href="#settings" class="nav-link block hover:text-blue-400 transition">02. {t.nav.settings}</a>
+          <a href="#issues" class="nav-link block hover:text-blue-400 transition">03. {t.nav.issues}</a>
+          <a href="#guide" class="nav-link block hover:text-blue-400 transition">04. {t.nav.guide}</a>
+          <a href="#plan" class="nav-link block hover:text-blue-400 transition">05. {t.nav.plan}</a>
+        </nav>
+      </aside>
+
+      <!-- On wide screens the right margin holds the properties panel, so the content column keeps its own width. -->
+      <main class="max-w-7xl min-[1800px]:max-w-none w-full p-8 pt-20 lg:ml-80 lg:pt-16 min-w-0 min-[1800px]:pr-[23rem] print:ml-0 print:p-0">
+       <div class="min-[1800px]:max-w-6xl">
+        <header class="mb-16 print:hidden">
+          <h1 class="mb-6 text-6xl font-black text-white tracking-tighter leading-none md:text-8xl">
+            {t.app.title1} <span class="text-blue-500">{t.app.title2}</span>
+          </h1>
+          <p class="max-w-3xl text-xl text-slate-400 italic">{t.app.subtitle}</p>
+        </header>
+
+        <Editor client:only="react" lang={lang} />
+       </div>
+      </main>
+    </div>
+
+    <script>
+      const btn = document.getElementById("mobile-menu-btn");
+      const aside = document.getElementById("main-aside");
+      const overlay = document.getElementById("menu-overlay");
+      const toggle = () => {
+        aside?.classList.toggle("hidden");
+        overlay?.classList.toggle("hidden");
+      };
+      btn?.addEventListener("click", toggle);
+      overlay?.addEventListener("click", toggle);
+      document.querySelectorAll(".nav-link").forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth < 1024 && !aside?.classList.contains("hidden")) toggle();
+        }),
+      );
+    </script>
+  </body>
+</html>

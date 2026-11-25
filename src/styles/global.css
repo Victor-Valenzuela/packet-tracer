@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@theme {
+    --color-cisco-blue: #005073;
+    --color-terminal: #0d1117;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Print / save as PDF: the dark theme becomes plain black on white and only the guide and the test plan are printed. */
+@media print {
+    html, body {
+        background: #fff !important;
+    }
+    body * {
+        color: #111 !important;
+        background: transparent !important;
+        border-color: #bbb !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
