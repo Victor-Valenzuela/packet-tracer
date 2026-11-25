@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Also lets you start it by hand from the Actions tab ("Run workflow").
+  workflow_dispatch:
 
 permissions:
   contents: read

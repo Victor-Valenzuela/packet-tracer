@@ -4,8 +4,8 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  // GitHub Pages: https://victorBBQ.github.io/packet-tracer/
-  site: "https://victorBBQ.github.io",
+  // GitHub Pages: https://victor-valenzuela.github.io/packet-tracer/
+  site: "https://victor-valenzuela.github.io",
   base: "/packet-tracer",
   integrations: [react()],
   vite: {

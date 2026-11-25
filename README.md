@@ -4,13 +4,13 @@ Herramienta web para **diseñar una red y obtener los comandos de configuración
 Dibujas la topología (routers, switches, PCs, servidores, Wi-Fi, Internet), indicas las IPs y las VLANs, y la guía de
 configuración se genera sola, con la explicación del **porqué** de cada comando.
 
-🔗 **Demo:** [victorBBQ.github.io/packet-tracer](https://victorBBQ.github.io/packet-tracer/)
+🔗 **Demo:** [victor-valenzuela.github.io/packet-tracer](https://victor-valenzuela.github.io/packet-tracer/)
 
 ## Para qué sirve
 
 Está pensada para **practicar y estudiar redes en Cisco Packet Tracer**, y para tener a mano una guía ordenada que se
-adapte a *tu* topología en lugar de a un caso fijo. Es la continuación de
-[networks-lab](https://github.com/victorBBQ/networks-lab), que era una guía estática para un escenario concreto.
+adapte a *tu* topología en lugar de a un caso fijo. Nace de un proyecto anterior, `networks-lab`, que era una guía
+estática para un escenario concreto.
 
 - Cambias la topología o un dato y **toda la guía se regenera**.
 - Compara esquemas sobre **la misma red**: *Router on a Stick* frente a *Collapsed Core*.
